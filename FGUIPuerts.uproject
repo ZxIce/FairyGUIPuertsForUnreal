@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{163A238C-488C-3C2F-81DE-2DA6C6E632D7}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "FGUIPuerts",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
