@@ -62656,6 +62656,22 @@ declare module "ue" {
         static Load(InName: string): TrueTypeFontFactory;
     }
     
+    class TypeScriptGameInstance extends GameInstance {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        StartNotify: $Delegate<() => void>;
+        ShutdownNotify: $Delegate<() => void>;
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): TypeScriptGameInstance;
+        static Load(InName: string): TypeScriptGameInstance;
+    }
+    
+    class TsTestGameInstance_C extends TypeScriptGameInstance {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): TsTestGameInstance_C;
+        static Load(InName: string): TsTestGameInstance_C;
+    }
+    
     class TurnBasedBlueprintLibrary extends BlueprintFunctionLibrary {
         constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
         static RegisterTurnBasedMatchInterfaceObject(WorldContextObject: $Nullable<Object>, PlayerController: $Nullable<PlayerController>, Object: $Nullable<Object>): void;
