@@ -7,16 +7,17 @@ export class UIPanel
     MainView:UE.GComponent;
 }
 let uipanel:UIPanel;
-export function Load(){
+export function Load(ins: UE.TypeScriptGameInstance){
+    
     if (uipanel == null) {
         uipanel = new UIPanel();
     }
     else{
         uipanel.MainView.GetUIRoot().RemoveChild(uipanel.MainView);
     }
-    let GameInstance = argv.getByName("GameInstance") as UE.GameInstance;
     
-    uipanel.MainView = UE.UIPackage.CreateObject("Basics", "Main", GameInstance) as UE.GComponent;
+    console.warn('Load');
+    uipanel.MainView = UE.UIPackage.CreateObject("Basics", "Main", ins) as UE.GComponent;
     uipanel.MainView.MakeFullScreen();
     uipanel.MainView.SetParentToRoot();
     return uipanel;

@@ -1,6 +1,6 @@
 import * as UE from 'ue'
 import * as UI from './UI/StartUI'
-import {on} from 'puerts';
+import {on,argv} from 'puerts';
 
 class TsTestGameInstance extends UE.TypeScriptGameInstance {
     //@no-blueprint
@@ -14,9 +14,9 @@ class TsTestGameInstance extends UE.TypeScriptGameInstance {
 
     //@no-blueprint
     OnStart():void {
-        console.warn('TsTestGameInstance.OnStart');
-        //ReactUMG.init(this.GetWorld());
-        this.root = UI.Load();
+        console.warn('TsTestGameInstance.OnStart'); 
+        UE.UIPackage.AddPackagePath("/Game/UI/Basics",this);
+        this.root = UI.Load(this);
 
         on('HMR.finish', (moduleName: string, module: any) => this.OnReload(moduleName, module));
     }
@@ -25,8 +25,7 @@ class TsTestGameInstance extends UE.TypeScriptGameInstance {
     OnReload(moduleName: string, module: any): void {
         console.warn('HMR.finish', moduleName);
         if (moduleName == "UI/StartUI") {
-            //if (this.root) this.root.removeFromViewport();
-            this.root = UI.Load();
+            this.root = UI.Load(this);
         }
     }
 }

@@ -4,6 +4,8 @@ const UE = require("ue");
 const UI = require("./UI/StartUI");
 const puerts_1 = require("puerts");
 class TsTestGameInstance extends UE.TypeScriptGameInstance {
+    //@no-blueprint
+    root;
     ReceiveInit() {
         console.warn('TsTestGameInstance.ReceiveInit');
         this.StartNotify.Bind(() => this.OnStart());
@@ -11,16 +13,15 @@ class TsTestGameInstance extends UE.TypeScriptGameInstance {
     //@no-blueprint
     OnStart() {
         console.warn('TsTestGameInstance.OnStart');
-        //ReactUMG.init(this.GetWorld());
-        this.root = UI.Load();
+        UE.UIPackage.AddPackagePath("/Game/UI/Basics", this);
+        this.root = UI.Load(this);
         puerts_1.on('HMR.finish', (moduleName, module) => this.OnReload(moduleName, module));
     }
     //@no-blueprint
     OnReload(moduleName, module) {
         console.warn('HMR.finish', moduleName);
         if (moduleName == "UI/StartUI") {
-            //if (this.root) this.root.removeFromViewport();
-            this.root = UI.Load();
+            this.root = UI.Load(this);
         }
     }
 }

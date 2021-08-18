@@ -22086,97 +22086,6 @@ declare module "ue" {
         static Load(InName: string): BlueprintEditorToolMenuContext;
     }
     
-    enum ETutorialContent { None, Text, UDNExcerpt, RichText, ETutorialContent_MAX}
-    class TutorialContent {
-        constructor();
-        constructor(Type: ETutorialContent, Content: string, ExcerptName: string, Text: string);
-        Type: ETutorialContent;
-        Content: string;
-        ExcerptName: string;
-        Text: string;
-        static StaticClass(): Class;
-    }
-    
-    enum ETutorialAnchorIdentifier { None, NamedWidget, Asset, ETutorialAnchorIdentifier_MAX}
-    class TutorialContentAnchor {
-        constructor();
-        constructor(Type: ETutorialAnchorIdentifier, WrapperIdentifier: string, Asset: SoftObjectPath, bDrawHighlight: boolean, TabToFocusOrOpen: string, FriendlyName: string, GUIDString: string, OuterName: string);
-        Type: ETutorialAnchorIdentifier;
-        WrapperIdentifier: string;
-        Asset: SoftObjectPath;
-        bDrawHighlight: boolean;
-        TabToFocusOrOpen: string;
-        FriendlyName: string;
-        GUIDString: string;
-        OuterName: string;
-        static StaticClass(): Class;
-    }
-    
-    class TutorialWidgetContent {
-        constructor();
-        constructor(Content: TutorialContent, WidgetAnchor: TutorialContentAnchor, HorizontalAlignment: EHorizontalAlignment, VerticalAlignment: EVerticalAlignment, Offset: Vector2D, ContentWidth: number, bAutoFocus: boolean);
-        Content: TutorialContent;
-        WidgetAnchor: TutorialContentAnchor;
-        HorizontalAlignment: EHorizontalAlignment;
-        VerticalAlignment: EVerticalAlignment;
-        Offset: Vector2D;
-        ContentWidth: number;
-        bAutoFocus: boolean;
-        static StaticClass(): Class;
-    }
-    
-    class TutorialStage {
-        constructor();
-        constructor(Name: string, Content: TutorialContent, WidgetContent: TArray<TutorialWidgetContent>, NextButtonText: string, BackButtonText: string, PlatformsToTest: TArray<string>, bInvertPlatformTest: boolean);
-        Name: string;
-        Content: TutorialContent;
-        WidgetContent: TArray<TutorialWidgetContent>;
-        NextButtonText: string;
-        BackButtonText: string;
-        PlatformsToTest: TArray<string>;
-        bInvertPlatformTest: boolean;
-        static StaticClass(): Class;
-    }
-    
-    class EditorTutorial extends Object {
-        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
-        Title: string;
-        SortOrder: number;
-        Icon: string;
-        Texture: Texture2D;
-        Category: string;
-        SummaryContent: TutorialContent;
-        Stages: TArray<TutorialStage>;
-        PreviousTutorial: SoftClassPath;
-        NextTutorial: SoftClassPath;
-        bIsStandalone: boolean;
-        AssetToUse: SoftObjectPath;
-        ImportPath: string;
-        bHideInBrowser: boolean;
-        SearchTags: string;
-        static SetEngineFolderVisibilty(bNewVisibility: boolean): void;
-        static OpenAsset(Asset: $Nullable<Object>): void;
-        OnTutorialStageStarted(StageName: string): void;
-        OnTutorialStageEnded(StageName: string): void;
-        OnTutorialLaunched(): void;
-        OnTutorialClosed(): void;
-        static GoToPreviousTutorialStage(): void;
-        static GoToNextTutorialStage(): void;
-        static GetEngineFolderVisibilty(): boolean;
-        GetActorReference(PathToActor: string): Actor;
-        static BeginTutorial(TutorialToStart: $Nullable<EditorTutorial>, bRestart: boolean): void;
-        static StaticClass(): Class;
-        static Find(OrigInName: string, Outer?: Object): EditorTutorial;
-        static Load(InName: string): EditorTutorial;
-    }
-    
-    class BlueprintEditorTutorial_C extends EditorTutorial {
-        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
-        static StaticClass(): Class;
-        static Find(OrigInName: string, Outer?: Object): BlueprintEditorTutorial_C;
-        static Load(InName: string): BlueprintEditorTutorial_C;
-    }
-    
     class BlueprintFactory extends Factory {
         constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
         ParentClass: Class;
@@ -30876,6 +30785,90 @@ declare module "ue" {
         static StaticClass(): Class;
         static Find(OrigInName: string, Outer?: Object): EditorSubsystemBlueprintLibrary;
         static Load(InName: string): EditorSubsystemBlueprintLibrary;
+    }
+    
+    enum ETutorialContent { None, Text, UDNExcerpt, RichText, ETutorialContent_MAX}
+    class TutorialContent {
+        constructor();
+        constructor(Type: ETutorialContent, Content: string, ExcerptName: string, Text: string);
+        Type: ETutorialContent;
+        Content: string;
+        ExcerptName: string;
+        Text: string;
+        static StaticClass(): Class;
+    }
+    
+    enum ETutorialAnchorIdentifier { None, NamedWidget, Asset, ETutorialAnchorIdentifier_MAX}
+    class TutorialContentAnchor {
+        constructor();
+        constructor(Type: ETutorialAnchorIdentifier, WrapperIdentifier: string, Asset: SoftObjectPath, bDrawHighlight: boolean, TabToFocusOrOpen: string, FriendlyName: string, GUIDString: string, OuterName: string);
+        Type: ETutorialAnchorIdentifier;
+        WrapperIdentifier: string;
+        Asset: SoftObjectPath;
+        bDrawHighlight: boolean;
+        TabToFocusOrOpen: string;
+        FriendlyName: string;
+        GUIDString: string;
+        OuterName: string;
+        static StaticClass(): Class;
+    }
+    
+    class TutorialWidgetContent {
+        constructor();
+        constructor(Content: TutorialContent, WidgetAnchor: TutorialContentAnchor, HorizontalAlignment: EHorizontalAlignment, VerticalAlignment: EVerticalAlignment, Offset: Vector2D, ContentWidth: number, bAutoFocus: boolean);
+        Content: TutorialContent;
+        WidgetAnchor: TutorialContentAnchor;
+        HorizontalAlignment: EHorizontalAlignment;
+        VerticalAlignment: EVerticalAlignment;
+        Offset: Vector2D;
+        ContentWidth: number;
+        bAutoFocus: boolean;
+        static StaticClass(): Class;
+    }
+    
+    class TutorialStage {
+        constructor();
+        constructor(Name: string, Content: TutorialContent, WidgetContent: TArray<TutorialWidgetContent>, NextButtonText: string, BackButtonText: string, PlatformsToTest: TArray<string>, bInvertPlatformTest: boolean);
+        Name: string;
+        Content: TutorialContent;
+        WidgetContent: TArray<TutorialWidgetContent>;
+        NextButtonText: string;
+        BackButtonText: string;
+        PlatformsToTest: TArray<string>;
+        bInvertPlatformTest: boolean;
+        static StaticClass(): Class;
+    }
+    
+    class EditorTutorial extends Object {
+        constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        Title: string;
+        SortOrder: number;
+        Icon: string;
+        Texture: Texture2D;
+        Category: string;
+        SummaryContent: TutorialContent;
+        Stages: TArray<TutorialStage>;
+        PreviousTutorial: SoftClassPath;
+        NextTutorial: SoftClassPath;
+        bIsStandalone: boolean;
+        AssetToUse: SoftObjectPath;
+        ImportPath: string;
+        bHideInBrowser: boolean;
+        SearchTags: string;
+        static SetEngineFolderVisibilty(bNewVisibility: boolean): void;
+        static OpenAsset(Asset: $Nullable<Object>): void;
+        OnTutorialStageStarted(StageName: string): void;
+        OnTutorialStageEnded(StageName: string): void;
+        OnTutorialLaunched(): void;
+        OnTutorialClosed(): void;
+        static GoToPreviousTutorialStage(): void;
+        static GoToNextTutorialStage(): void;
+        static GetEngineFolderVisibilty(): boolean;
+        GetActorReference(PathToActor: string): Actor;
+        static BeginTutorial(TutorialToStart: $Nullable<EditorTutorial>, bRestart: boolean): void;
+        static StaticClass(): Class;
+        static Find(OrigInName: string, Outer?: Object): EditorTutorial;
+        static Load(InName: string): EditorTutorial;
     }
     
     class EditorTutorialFactory extends Factory {
@@ -62667,6 +62660,9 @@ declare module "ue" {
     
     class TsTestGameInstance_C extends TypeScriptGameInstance {
         constructor(Outer?: Object, Name?: string, ObjectFlags?: number);
+        UberGraphFrame: PointerToUberGraphFrame;
+        ReceiveInit(): void;
+        ExecuteUbergraph_TsTestGameInstance(EntryPoint: number): void;
         static StaticClass(): Class;
         static Find(OrigInName: string, Outer?: Object): TsTestGameInstance_C;
         static Load(InName: string): TsTestGameInstance_C;
@@ -62814,6 +62810,7 @@ declare module "ue" {
         static GetBranch(): string;
         static CreateObjectFromURL(URL: string, WorldContextObject: $Nullable<Object>, ClassType?: Class /* = None */): GObject;
         static CreateObject(PackageName: string, ResourceName: string, WorldContextObject: $Nullable<Object>, ClassType?: Class /* = None */): GObject;
+        static AddPackagePath(InAssetPath: string, WorldContextObject: $Nullable<Object>): UIPackage;
         static AddPackage(InAsset: $Nullable<UIPackageAsset>, WorldContextObject: $Nullable<Object>): UIPackage;
         static StaticClass(): Class;
         static Find(OrigInName: string, Outer?: Object): UIPackage;
