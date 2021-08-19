@@ -4,8 +4,6 @@ const UE = require("ue");
 const UI = require("./UI/StartUI");
 const puerts_1 = require("puerts");
 class TsTestGameInstance extends UE.TypeScriptGameInstance {
-    //@no-blueprint
-    root;
     ReceiveInit() {
         console.warn('TsTestGameInstance.ReceiveInit');
         this.StartNotify.Bind(() => this.OnStart());

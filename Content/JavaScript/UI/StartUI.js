@@ -1,10 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Load = exports.UIPanel = void 0;
 const UE = require("ue");
 class UIPanel {
-    name;
-    MainView;
 }
 exports.UIPanel = UIPanel;
 let uipanel;
@@ -16,7 +13,10 @@ function Load(ins) {
         uipanel.MainView.GetUIRoot().RemoveChild(uipanel.MainView);
     }
     console.warn('Load');
-    uipanel.MainView = UE.UIPackage.CreateObject("Basics", "Main", ins);
+    // uipanel.MainView = UE.UIPackage.CreateObject("Basics", "Main", ins) as UE.GComponent;
+    // uipanel.MainView.MakeFullScreen();
+    // uipanel.MainView.SetParentToRoot();
+    uipanel.MainView = UE.UIPackage.CreateObject("Basics", "Demo_Button", ins);
     uipanel.MainView.MakeFullScreen();
     uipanel.MainView.SetParentToRoot();
     return uipanel;
