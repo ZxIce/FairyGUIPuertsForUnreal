@@ -13,12 +13,12 @@ function Load(ins) {
         uipanel.MainView.GetUIRoot().RemoveChild(uipanel.MainView);
     }
     console.warn('Load');
-    // uipanel.MainView = UE.UIPackage.CreateObject("Basics", "Main", ins) as UE.GComponent;
-    // uipanel.MainView.MakeFullScreen();
-    // uipanel.MainView.SetParentToRoot();
-    uipanel.MainView = UE.UIPackage.CreateObject("Basics", "Demo_Button", ins);
+    uipanel.MainView = UE.UIPackage.CreateObject("Basics", "Main", ins);
     uipanel.MainView.MakeFullScreen();
     uipanel.MainView.SetParentToRoot();
+    // uipanel.MainView = UE.UIPackage.CreateObject("Basics", "Demo_Button", ins) as UE.GComponent;
+    // uipanel.MainView.MakeFullScreen();
+    // uipanel.MainView.SetParentToRoot();
     return uipanel;
 }
 exports.Load = Load;
