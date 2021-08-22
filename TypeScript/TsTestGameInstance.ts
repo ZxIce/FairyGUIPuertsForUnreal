@@ -18,9 +18,15 @@ class TsTestGameInstance extends UE.TypeScriptGameInstance {
         UE.UIPackage.AddPackagePath("/Game/UI/Basics",this);
         this.root = UI.Load(this);
 
+        on('HMR.prepare', (moduleName: string, module: any) => this.OnPreReload(moduleName, module));
         on('HMR.finish', (moduleName: string, module: any) => this.OnReload(moduleName, module));
     }
-
+    OnPreReload(moduleName: string, module: any): void {
+        console.warn('HMR.prepare', moduleName);
+        if (moduleName == "UI/StartUI") {
+            UI.PreLoad(this);
+        }
+    }
     //@no-blueprint
     OnReload(moduleName: string, module: any): void {
         console.warn('HMR.finish', moduleName);
