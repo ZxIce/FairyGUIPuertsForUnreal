@@ -19,11 +19,46 @@ export class UIPanelManager
     }
 
     _OpenPanel(name:string,arg:any[]):boolean{
-        let panel = this.panels.get(name) as UIPanel;
-        if (panel == null) {
-            return false;
+        if (name != null) {
+            let panel = this.panels.get(name) as UIPanel;
+            if (panel == null) {
+                return false;
+            }
+            panel.__Open(arg);
+            return true;
         }
-        
-        return true
+        return false;
+    }
+
+    PanelIsOpen(name:string):boolean{
+        if (name != null) {
+            let panel = this.panels.get(name) as UIPanel;
+            if (panel != null) {
+                return panel.IsOpen();
+            }
+        }
+        return false;
+    }
+
+    _ClosePanel(name:string):void{
+        if (name != null) {
+            let panel = this.panels.get(name) as UIPanel;
+            if (panel != null) {
+                panel.__DoClose();
+            }
+        }
+    }
+
+    UIPanelMeta(panelName:string, parentName:string,pkgName:string,resName:string):UIPanel{
+        let oldPanel = this.panels.get(panelName) as UIPanel;
+        if (oldPanel != null) {
+            return oldPanel;
+        }
+        let panel = new UIPanel();
+        panel.name = panelName;
+        panel.pkgName = pkgName;
+        panel.assetName = resName;
+        this.panels.set(panelName,panel);
+        return panel;
     }
 }

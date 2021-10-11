@@ -73,4 +73,4 @@ export class UIPanel
         }
         this.isOpen = false;
     }
-}0
+}
