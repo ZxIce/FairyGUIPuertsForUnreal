@@ -1,0 +1,19 @@
+{
+  "name": "fairyguipuertsforunreal",
+  "version": "1.0.0",
+  "description": "FairyGUI+Puerts unreal版本demo  ## 启动脚本  TsTestGameInstance.ts  ## 基本功能(TS版本)  1、加载FairyGUI    2、UI热重载基本功能实现  ## 备注  FairyGUI插件接口添加UIPackage.AddPackagePath,解决函数重载问题。    官方版本插件请自行修改或者改变加载方式",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZxIce/FairyGUIPuertsForUnreal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZxIce/FairyGUIPuertsForUnreal/issues"
+  },
+  "homepage": "https://github.com/ZxIce/FairyGUIPuertsForUnreal#readme"
+}
