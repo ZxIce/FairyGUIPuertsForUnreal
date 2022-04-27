@@ -15,12 +15,15 @@ class TsTestGameInstance extends UE.TypeScriptGameInstance {
 
     //@no-blueprint
     OnStart():void {
-        console.warn('TsTestGameInstance.OnStart'); 
-        UE.UIPackage.AddPackagePath("/Game/UI/Basics",this);
-        this.root = UI.Load(this);
+        console.warn('TsTestGameInstance.OnStart');
+       // this.wait().then(r => {
+            UE.UIPackage.AddPackagePath("/Game/UI/Basics",this);
+            this.root = UI.Load(this);
 
-        //on('HMR.prepare', (moduleName: string, module: any) => this.OnPreReload(moduleName, module));
-        on('HMR.finish', (moduleName: string, module: any) => this.OnReload(moduleName, module));
+            //on('HMR.prepare', (moduleName: string, module: any) => this.OnPreReload(moduleName, module));
+            on('HMR.finish', (moduleName: string, module: any) => this.OnReload(moduleName, module));
+       // })
+
     }
     OnPreReload(moduleName: string, module: any): void {
         console.warn('HMR.prepare', moduleName);
@@ -35,6 +38,16 @@ class TsTestGameInstance extends UE.TypeScriptGameInstance {
             this.root = UI.Load(this);
         }
     }
+    delay(t: number) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, t);
+        });
+    }
+
+   async wait():Promise<void>{
+
+        await this.delay(10)
+   }
 }
 
 export default TsTestGameInstance;

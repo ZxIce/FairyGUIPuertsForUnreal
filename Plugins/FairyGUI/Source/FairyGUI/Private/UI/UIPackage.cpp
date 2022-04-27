@@ -60,12 +60,6 @@ void UUIPackage::SetVar(const FString& VarKey, const FString& VarValue)
     UUIPackageStatic::Get().Vars.Add(VarKey, VarValue);
 }
 
-UUIPackage* UUIPackage::AddPackagePath(const FString& InAssetPath, UObject* WorldContextObject)
-{
-
-    return AddPackage(*InAssetPath, WorldContextObject);
-}
-
 UUIPackage* UUIPackage::AddPackage(const TCHAR* InAssetPath, UObject* WorldContextObject)
 {
     UUIPackageAsset* PackageAsset = Cast<UUIPackageAsset>(StaticLoadObject(UUIPackageAsset::StaticClass(), nullptr, InAssetPath));
@@ -108,6 +102,11 @@ UUIPackage* UUIPackage::AddPackage(UUIPackageAsset* InAsset, UObject* WorldConte
     UUIPackageStatic::Get().PackageInstByName.Add(Pkg->Name, Pkg);
 
     return Pkg;
+}
+
+UUIPackage* UUIPackage::AddPackagePath(const FString& InAssetPath, UObject* WorldContextObject)
+{
+    return AddPackage(*InAssetPath, WorldContextObject);
 }
 
 void UUIPackage::RemovePackage(const FString& IDOrName, UObject* WorldContextObject)
